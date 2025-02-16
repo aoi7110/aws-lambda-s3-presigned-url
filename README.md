@@ -1,9 +1,36 @@
+#### 概要
+S3バケットとの接続するツール
+##### 前提
+以下をAWSコンソール上で実施
+```
+・S3 バケットを作成
+・Lambdaにpythonスクリプトをデプロイ（lambda_function.py）
+・Lambda関数を実行するAPI Gatewayを作成
+・LambdaからS3バケットを操作するための、IAMポリシーを設定
+```
+#### 実現内容
+##### lambda_function.py
+```
+・Lambda関数を作成し、デプロイ
+・Presigned URL を生成
+・json形式で返却
+・Presigned URL の生成には、boto3クラスのclientメソッドを使用
+```
+##### client_function.py
+```
+・get_presigned_urlメソッド
+　　presignedURLを取得するメソッド
+　　API Gatewayで指定したLambda関数へアクセスする。
+・upload_imageメソッド
+　　引数で受け取った画像ファイルをS3へ送信する。
+```
+
 #### クライアントからの実行方法
-###### 以下のpythonスクリプトを実行
+##### 以下のpythonスクリプトを実行
 ```
 /aws-lambda-s3-presigned-url/src/client_function.py
 ```
-###### 実行結果
+##### 実行結果
 ```
 ~/workspace$ /usr/bin/python3 ./aws-lambda-s3-presigned-url/src/client_function.py
 Presigned URL obtained:
@@ -12,7 +39,7 @@ Image upload succeeded!
 ```
 実行後、S3に該当のイメージファイルが格納されていることを確認。
 
-###### ※画像の指定方法
+##### ※画像の指定方法
 pythonスクリプト内の以下の項目に画像のパス・ファイル名を指定
 ```
 # S3 に保存するファイル名（API に渡すパラメータ）
