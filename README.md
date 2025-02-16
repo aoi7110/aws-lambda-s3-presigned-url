@@ -28,7 +28,8 @@ S3バケットとの接続するツール
 #### クライアントからの実行方法
 ##### 以下のpythonスクリプトを実行
 ```
-/aws-lambda-s3-presigned-url/src/client_function.py
+$ cd [プロジェクトルート]
+$ ./aws-lambda-s3-presigned-url/src/client_function.py
 ```
 ##### 実行結果
 ```
@@ -46,4 +47,11 @@ pythonスクリプト内の以下の項目に画像のパス・ファイル名�
 file_name = 【ファイル名】
 # アップロードするローカルの画像ファイルのパス
 file_path =  r"【ファイルパス】"
+```
+
+##### 今後やること
+・client_function.pyの読み取り
+```
+なぜget_presigned_urlメソッドでfile_nameをもらわなければいけないか忘れた。
+Readmeの追記/AWSの操作系
 ```
