@@ -1,6 +1,11 @@
 import requests
 import json
 
+# アップロードするローカルの画像ファイルのパス
+target_path = r"C:\workspace\aws-lambda\aws-lambda-s3-presigned-url\upload"
+# S3 に保存するファイル名
+image_name = "test-image.jpg"
+
 def get_presigned_url(api_url, file_name):
     """
     API から presigned URL を取得する関数
@@ -32,14 +37,13 @@ def upload_image(upload_url, image_path):
 if __name__ == "__main__":
     # presigned URL を取得する API のエンドポイント
     api_url = "https://ocgmxbtnn1.execute-api.ap-southeast-2.amazonaws.com/mystage/20250211_generate-presigned-url"
-    # S3 に保存するファイル名（API に渡すパラメータ）
-    file_name = "test-image.jpg"
+
     # アップロードするローカルの画像ファイルのパス
-    image_path = r"C:\Users\aoi71\test-image.jpg"
+    image_path = target_path + "/" + image_name
     
     try:
         # presigned URL を取得
-        presigned_url = get_presigned_url(api_url, file_name)
+        presigned_url = get_presigned_url(api_url, image_name)
         print("Presigned URL obtained:")
         print(presigned_url)
         
