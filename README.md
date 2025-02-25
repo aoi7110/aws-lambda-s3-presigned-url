@@ -49,9 +49,3 @@ file_name = 【ファイル名】
 file_path =  r"【ファイルパス】"
 ```
 
-##### 今後やること
-・client_function.pyの読み取り
-```
-なぜget_presigned_urlメソッドでfile_nameをもらわなければいけないか忘れた。
-Readmeの追記/AWSの操作系
-```
