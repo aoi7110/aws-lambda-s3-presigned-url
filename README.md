@@ -1,5 +1,20 @@
 #### 概要
 S3バケットとの接続するツール
+
+##### 1.実行方法
+pythonスクリプト内の以下の項目に画像のパス・ファイル名を指定
+```
+【client_function.py】
+# アップロードするローカルの画像ファイルのパス
+target_path =  r"【ファイルパス】"
+# S3 に保存するファイル名（API に渡すパラメータ）
+image_name = 【ファイル名】
+```
+##### 2.以下のpythonスクリプトを実行
+```
+$ cd [プロジェクトルート]
+$ ./aws-lambda-s3-presigned-url/src/client_function.py
+```
 ##### 前提
 以下をAWSコンソール上で実施
 ```
@@ -25,12 +40,7 @@ S3バケットとの接続するツール
 　　引数で受け取った画像ファイルをS3へ送信する。
 ```
 
-#### クライアントからの実行方法
-##### 以下のpythonスクリプトを実行
-```
-$ cd [プロジェクトルート]
-$ ./aws-lambda-s3-presigned-url/src/client_function.py
-```
+
 ##### 実行結果
 ```
 ~/workspace$ /usr/bin/python3 ./aws-lambda-s3-presigned-url/src/client_function.py
@@ -39,13 +49,4 @@ https://7110-mybucket-9dd968df-ba1a-1cab-c01c-612410b09e42.s3.amazonaws.com/test
 Image upload succeeded!
 ```
 実行後、S3に該当のイメージファイルが格納されていることを確認。
-
-##### ※画像の指定方法
-pythonスクリプト内の以下の項目に画像のパス・ファイル名を指定
-```
-# S3 に保存するファイル名（API に渡すパラメータ）
-file_name = 【ファイル名】
-# アップロードするローカルの画像ファイルのパス
-file_path =  r"【ファイルパス】"
-```
 
